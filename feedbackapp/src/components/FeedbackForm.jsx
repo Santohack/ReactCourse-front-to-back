@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import Button from "./shared/Button";
 import Card from "./shared/Card";
 import RatingSelect from "./RatingSelect";
+import { useNavigate } from "react-router-dom";
 
 const FeedbackForm = ({handleAdd}) => {
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
   const [rating ,setRating] = useState (10)
-
+  const navigte = useNavigate();
   const handleChange = (e) => {
+   
     if (text === "") {
       setBtnDisabled(true);
       setMessage(null);
@@ -20,6 +22,7 @@ const FeedbackForm = ({handleAdd}) => {
     } else {
       setBtnDisabled(false);
       setMessage(null);
+      
     }
     setText(e.target.value);
    // console.log(e.target.value);
@@ -33,6 +36,9 @@ const FeedbackForm = ({handleAdd}) => {
         }
    handleAdd(newFeedback)
       }
+      setText("")
+      navigte('/post', {replace: true})
+      
    }
   return (
     <Card>
