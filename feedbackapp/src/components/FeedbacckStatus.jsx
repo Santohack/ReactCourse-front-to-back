@@ -1,7 +1,7 @@
-
-
-const FeedbacckStatus = ({feedback}) => {
-    
+import { useContext } from "react"
+import FeedbackContext from "../context/FeedbackContext"
+const FeedbacckStatus = () => {
+    const {feedback} = useContext(FeedbackContext)
    const avg =( feedback.reduce((acc, curr)=>{
     return acc+curr.rating
    },0) / feedback.length).toFixed(1)

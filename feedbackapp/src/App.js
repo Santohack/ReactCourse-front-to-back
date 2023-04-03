@@ -8,38 +8,32 @@ import FeedbackList from "./components/FeedbackList.jsx"
 import Header from "./components/Header";
 import NoMatchFpund from './components/NoMatchFpund.jsx';
 import Post from './components/Post.jsx';
-import feedbackData from "./components/data/feedbackData";
-import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+//import feedbackData from "./components/data/feedbackData";
+//import { useState } from "react";
+
+import { FeedbackProvider } from './context/FeedbackContext.js';
 
 function App() {
-   const [feedback ,setFeedback] = useState(feedbackData)
-    const addFeedback = (newFeedback)=>{
-      newFeedback.id = uuidv4()
-      setFeedback([newFeedback, ...feedback])
-      
-    }
-   const deleteItem = (id)=>{
-       console.log("from app",id)
-       if(window.confirm('Are you sure you want to delete')){
-        setFeedback(feedback.filter((item)=> item.id !== id))
-       }
-   }
-
+  
+   
+ 
 
    
   return (
-    <> 
-   
+
+    <FeedbackProvider> 
+   <FeedbackProvider>
+
+  
     <Router>
     <Header text='Feedback Form'  />
     <div className="container">
      <Routes>
      <Route exact path ='/' element ={<>
      
-      <FeedbackForm handleAdd = {addFeedback} />
-    <FeedbacckStatus feedback={feedback} />
-    <FeedbackList feedback={feedback}  handleDelete={deleteItem} />
+      <FeedbackForm />
+    <FeedbacckStatus />
+    <FeedbackList />
      </>} >
        
 
@@ -55,7 +49,8 @@ function App() {
     </div>
     <FeedbackIcon />
     </Router>
-    </>
+    </FeedbackProvider>
+    </FeedbackProvider>
    
   );
 }

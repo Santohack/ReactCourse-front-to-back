@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 
 import Button from "./shared/Button";
 import Card from "./shared/Card";
 import RatingSelect from "./RatingSelect";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import FeedbackContext from "../context/FeedbackContext";
+//import { useNavigate } from "react-router-dom";
 
-const FeedbackForm = ({handleAdd}) => {
+const FeedbackForm = () => {
+  const {addFeedback,feedbackEdit} = useContext(FeedbackContext)
+
+   useEffect(()=>{
+    if(feedbackEdit.edit === true){
+      setBtnDisabled(false)
+      setRating(feedbackEdit.item.rating)
+      setText(feedbackEdit.item.text)
+    }
+   },[feedbackEdit])
+
+
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
-  const [rating ,setRating] = useState (10)
-  const navigte = useNavigate();
+  const [rating ,setRating] = useState ('')
+  //const navigate = useNavigate();
   const handleChange = (e) => {
    
     if (text === "") {
@@ -34,10 +47,10 @@ const FeedbackForm = ({handleAdd}) => {
             text,
             rating
         }
-   handleAdd(newFeedback)
+        addFeedback(newFeedback)
       }
       setText("")
-      navigte('/post', {replace: true})
+     // navigate('/post')
       
    }
   return (

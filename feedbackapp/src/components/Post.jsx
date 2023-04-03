@@ -22,7 +22,7 @@ const navigate = useNavigate()
           <h2> post</h2>
           <button onClick={handleResponse}> click</button>
       </div><Routes>
-              <Route path='show' element = {<h1>Hello again</h1>} />
+              <Route path='/show' element = {<h1>Hello again</h1>} />
           </Routes></>
   )
 }
