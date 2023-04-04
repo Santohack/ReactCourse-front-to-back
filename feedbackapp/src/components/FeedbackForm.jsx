@@ -8,22 +8,23 @@ import FeedbackContext from "../context/FeedbackContext";
 //import { useNavigate } from "react-router-dom";
 
 const FeedbackForm = () => {
-  const {addFeedback,feedbackEdit} = useContext(FeedbackContext)
-
-   useEffect(()=>{
-    if(feedbackEdit.edit === true){
-      setBtnDisabled(false)
-      setRating(feedbackEdit.item.rating)
-      setText(feedbackEdit.item.text)
-    }
-   },[feedbackEdit])
+ 
 
 
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
-  const [rating ,setRating] = useState ('')
+  const [rating ,setRating] = useState (4)
   //const navigate = useNavigate();
+  const {addFeedback,feedbackEdit, updateData} = useContext(FeedbackContext)
+
+  useEffect(()=>{
+   if(feedbackEdit.edit === true){
+     setBtnDisabled(false)
+     setRating(feedbackEdit.item.rating)
+     setText(feedbackEdit.item.text)
+   }
+  },[feedbackEdit])
   const handleChange = (e) => {
    
     if (text === "") {
@@ -47,7 +48,12 @@ const FeedbackForm = () => {
             text,
             rating
         }
-        addFeedback(newFeedback)
+        if(feedbackEdit.edit === true){
+   updateData(feedbackEdit.item.id, newFeedback)
+        }else{
+           addFeedback(newFeedback)
+        }
+       
       }
       setText("")
      // navigate('/post')

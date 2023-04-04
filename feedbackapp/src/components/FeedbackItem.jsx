@@ -13,7 +13,7 @@ const {deleteItem,editFeedback} = useContext(FeedbackContext)
       <button className='close' onClick={()=>deleteItem(item.id)}>
         <FaTimes color = 'purple'/>
       </button>
-      <button className='edit' onClick={()=>editFeedback(item.id)}>
+      <button className='edit' onClick={()=>editFeedback(item)}>
         <FaEdit color = 'purple'/>
       </button>
       <div className="text-display">{item.text}</div>
