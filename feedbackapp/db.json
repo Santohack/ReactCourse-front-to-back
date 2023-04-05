@@ -1,0 +1,19 @@
+{
+  "feedback": [
+    {
+      "id": 1,
+      "rating": 3,
+      "text": "data coming from json-server 1"
+    },
+    {
+      "text": "data coming from json-server 2gh",
+      "rating": 2,
+      "id": 2
+    },
+    {
+      "text": "postman testingnh",
+      "rating": 2,
+      "id": 4
+    }
+  ]
+}

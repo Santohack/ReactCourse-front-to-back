@@ -14,11 +14,7 @@ import Post from './components/Post.jsx';
 import { FeedbackProvider } from './context/FeedbackContext.js';
 
 function App() {
-  
-   
  
-
-   
   return (
 
     <FeedbackProvider> 
